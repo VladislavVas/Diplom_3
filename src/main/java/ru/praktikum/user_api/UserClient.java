@@ -18,6 +18,7 @@ public class UserClient {
 
     private RequestSpecification baseRequest() {
         return new RequestSpecBuilder()
+                .setBaseUri(BASE_URL)
                 .setContentType(ContentType.JSON)
                 .addFilter(new RequestLoggingFilter())
                 .addFilter(new ResponseLoggingFilter())
@@ -26,10 +27,10 @@ public class UserClient {
     }
 
     @Step("POST request. Create user.")
-    public ValidatableResponse createUser(CreateUserDto createUserDto) {
+    public void createUser(CreateUserDto createUserDto) {
         RequestSpecification request = given(baseRequest());
         request.body(createUserDto);
-        return request.post(BASE_URL + CREATE_USER_API).then();
+        request.post(CREATE_USER_API).then();
 
     }
 
@@ -37,21 +38,17 @@ public class UserClient {
     public ValidatableResponse loginUser(LoginUserDto loginUserDto) {
         RequestSpecification request = given(baseRequest());
         request.body(loginUserDto);
-        return request.post(BASE_URL + LOGIN_USER_API).then();
+        return request.post(LOGIN_USER_API).then();
     }
 
-
     @Step("DELETE request. Delete user")
-    public ValidatableResponse deleteUser(LoginUserDto loginUserDto) {
-          String token = getToken(loginUserDto);
-          RequestSpecification request = given(baseRequest());
+    public void deleteUser(LoginUserDto loginUserDto) {
+        String token = getToken(loginUserDto);
+        RequestSpecification request = given(baseRequest());
         if (token != null) {
-            return request.header("Authorization", token).
-                    delete(BASE_URL + UPDATE_USER_API).then();
-        } else {
-            return null;
+            request.header("Authorization", token).
+                    delete(UPDATE_USER_API).then();
         }
-
     }
 
     @Step("Get authorization token")

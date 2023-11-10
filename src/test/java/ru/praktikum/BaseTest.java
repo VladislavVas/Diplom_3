@@ -70,5 +70,4 @@ public class BaseTest {
         this.driver = new ChromeDriver(service, options);
     }
 
-
 }

@@ -11,13 +11,10 @@ import java.time.Duration;
 
 public class LoginPage extends BasePage {
 
-    //    private final By NameTitleForm = By.xpath("//h2[text()='Вход']");
     private final By emailField = By.xpath("//div[contains(label, 'Email')]/input[@type='text']");
     private final By passwordField = By.xpath("//div[contains(label, 'Пароль')]/input[@type='password' and @name='Пароль']");
     private final By loginButton = By.xpath("//button[text()='Войти']");
-    //    private final By TextBeforeLinkToRegistration = By.xpath("//p[contains(@class, 'undefined') and contains(text(), 'новый пользователь?')]");
     private final By registrationLink = By.xpath("//a[@href='/register' and contains(text(), 'Зарегистрироваться')]");
-//    private final By TextBeforeLinkToPasswordRecovery = By.xpath("//p[contains(@class, 'undefined') and contains(text(), 'Забыли пароль?')]");
     private final By passwordRecoveryLink = By.xpath("//a[@href='/forgot-password' and contains(text(), 'Восстановить пароль')]");
 
 

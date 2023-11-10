@@ -1,16 +1,12 @@
 package ru.praktikum.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
-
-import static ru.praktikum.Constants.BASE_URL;
 
 public class BasePage {
 
@@ -36,11 +32,6 @@ public class BasePage {
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOf(driver.findElement(locator)));
     }
-
-
-    public void scrollIntoView(WebElement element) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
-    } // а оно надо?
 
     public String getUrl() {
         return driver.getCurrentUrl();
